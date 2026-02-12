@@ -102,6 +102,6 @@ class ArithmeticUtilityTest {
     @Test
     void testMultiplyDummy() {
         double result = utility.multiply(5.0, 2.0);
-        assertNotNull(result);
+        assertEquals(0.0, result, 1e-9);
     }
 }
