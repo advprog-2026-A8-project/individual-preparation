@@ -68,6 +68,10 @@ checkstyle {
     toolVersion = "10.12.3"
 }
 
+tasks.withType<Checkstyle> {
+    configFile = file("config/checkstyle/checkstyle.xml")
+}
+
 tasks.jacocoTestReport {
     classDirectories.setFrom(files(classDirectories.files.map {
         fileTree(it) { exclude("**/*Application**") }
