@@ -3,6 +3,8 @@ plugins {
     jacoco
     id("org.springframework.boot") version "3.5.10"
     id("io.spring.dependency-management") version "1.1.7"
+    checkstyle
+    id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -52,4 +54,32 @@ tasks.jacocoTestReport {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "advprog-2026-A8-project_individual-preparation")
+        property("sonar.organization", "advprog-2026-a8-project")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
+}
+
+checkstyle {
+    toolVersion = "10.12.3"
+}
+
+tasks.withType<Checkstyle> {
+    configFile = file("config/checkstyle/checkstyle.xml")
+}
+
+tasks.jacocoTestReport {
+    classDirectories.setFrom(files(classDirectories.files.map {
+        fileTree(it) { exclude("**/*Application**") }
+    }))
+    dependsOn(tasks.test) // tests are required to run before generating the report
+    reports {
+        xml.required.set(true)
+        csv.required.set(true)
+        html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
+    }
 }
