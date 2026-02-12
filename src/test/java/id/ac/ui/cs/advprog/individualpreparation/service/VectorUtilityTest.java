@@ -76,4 +76,30 @@ class VectorUtilityTest {
         assertEquals("Vector cannot be empty", exception.getMessage());
     }
 
+    @Test
+    void testDotProductNormal() {
+        double[] v1 = {1.0, 2.0, 3.0};
+        double[] v2 = {4.0, 5.0, 6.0};
+        double result = utility.dotProduct(v1, v2);
+        assertEquals(32.0, result, 1e-9);
+    }
+
+    @Test
+    void testDotProductWithNegative() {
+        double[] v1 = {-1.0, -2.0};
+        double[] v2 = {3.0, -4.0};
+        double result = utility.dotProduct(v1, v2);
+        assertEquals(5.0, result, 1e-9);
+    }
+
+    @Test
+    void testDotProductDifferentLength() {
+        double[] v1 = {1.0, 2.0};
+        double[] v2 = {1.0, 2.0, 3.0};
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            utility.dotProduct(v1, v2);
+        });
+        assertEquals("Vector lengths must be equal", exception.getMessage());
+    }
+
 }
