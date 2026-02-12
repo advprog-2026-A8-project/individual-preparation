@@ -56,4 +56,22 @@ class ArithmeticUtilityTest {
         });
         assertEquals("Division by zero is not allowed", exception.getMessage());
     }
+
+    @Test
+    void testSubtractPositive() {
+        double result = utility.subtract(10.0, 3.0);
+        assertEquals(7.0, result, 1e-9);
+    }
+
+    @Test
+    void testSubtractNegative() {
+        double result = utility.subtract(-5.0, -2.0);
+        assertEquals(-3.0, result, 1e-9);
+    }
+
+    @Test
+    void testSubtractResultNegative() {
+        double result = utility.subtract(5.0, 10.0);
+        assertEquals(-5.0, result, 1e-9);
+    }
 }
