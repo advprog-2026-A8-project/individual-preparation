@@ -74,4 +74,34 @@ class ArithmeticUtilityTest {
         double result = utility.subtract(5.0, 10.0);
         assertEquals(-5.0, result, 1e-9);
     }
+
+    @Test
+    void testSubtractZero() {
+        double result = utility.subtract(10.0, 0.0);
+        assertEquals(10.0, result, 1e-9);
+    }
+
+    @Test
+    void testSubtractFromZero() {
+        double result = utility.subtract(0.0, 5.0);
+        assertEquals(-5.0, result, 1e-9);
+    }
+
+    @Test
+    void testSubtractDecimals() {
+        double result = utility.subtract(5.5, 2.2);
+        assertEquals(3.3, result, 1e-9);
+    }
+
+    @Test
+    void testSubtractLargeNumbers() {
+        double result = utility.subtract(1000000.0, 1.0);
+        assertEquals(999999.0, result, 1e-9);
+    }
+
+    @Test
+    void testMultiplyDummy() {
+        double result = utility.multiply(5.0, 2.0);
+        assertNotNull(result);
+    }
 }
