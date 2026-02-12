@@ -45,9 +45,21 @@ public class VectorUtility {
         }
         return result;
     }
-    
+
     public double norm(double[] v1) {
-        // TODO: Implement me properly!
-        return 0.0;
+        if (v1 == null) {
+            throw new IllegalArgumentException("Vector cannot be null");
+        }
+        if (v1.length == 0) {
+            throw new IllegalArgumentException("Vector cannot be empty");
+        }
+
+        double sumOfSquares = 0.0;
+        for (double value : v1) {
+            sumOfSquares = Math.fma(value, value, sumOfSquares);
+        }
+
+        return Math.sqrt(sumOfSquares);
     }
+
 }
