@@ -38,4 +38,68 @@ class VectorUtilityTest {
         });
         assertEquals("Vector lengths must be equal", exception.getMessage());
     }
+
+    @Test
+    void testNormNormalCase() {
+        double[] v = {3.0, 4.0};
+        double result = utility.norm(v);
+        assertEquals(5.0, result, 1e-9);
+    }
+
+    @Test
+    void testNormWithNegativeNumbers() {
+        double[] v = {-3.0, -4.0};
+        double result = utility.norm(v);
+        assertEquals(5.0, result, 1e-9);
+    }
+
+    @Test
+    void testNormSingleElement() {
+        double[] v = {7.0};
+        double result = utility.norm(v);
+        assertEquals(7.0, result, 1e-9);
+    }
+
+    @Test
+    void testNormNullVector() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            utility.norm(null);
+        });
+        assertEquals("Vector cannot be null", exception.getMessage());
+    }
+
+    @Test
+    void testNormEmptyVector() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            utility.norm(new double[]{});
+        });
+        assertEquals("Vector cannot be empty", exception.getMessage());
+    }
+
+    @Test
+    void testDotProductNormal() {
+        double[] v1 = {1.0, 2.0, 3.0};
+        double[] v2 = {4.0, 5.0, 6.0};
+        double result = utility.dotProduct(v1, v2);
+        assertEquals(32.0, result, 1e-9);
+    }
+
+    @Test
+    void testDotProductWithNegative() {
+        double[] v1 = {-1.0, -2.0};
+        double[] v2 = {3.0, -4.0};
+        double result = utility.dotProduct(v1, v2);
+        assertEquals(5.0, result, 1e-9);
+    }
+
+    @Test
+    void testDotProductDifferentLength() {
+        double[] v1 = {1.0, 2.0};
+        double[] v2 = {1.0, 2.0, 3.0};
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            utility.dotProduct(v1, v2);
+        });
+        assertEquals("Vector lengths must be equal", exception.getMessage());
+    }
+
 }
