@@ -8,6 +8,30 @@ class ArithmeticUtilityTest {
     private final ArithmeticUtility utility = new ArithmeticUtility();
 
     @Test
+    void testAddPositiveNumbers() {
+        double result = utility.add(5.0, 3.0);
+        assertEquals(8.0, result, 1e-9);
+    }
+
+    @Test
+    void testAddNegativeNumbers() {
+        double result = utility.add(-5.0, -3.0);
+        assertEquals(-8.0, result, 1e-9);
+    }
+
+    @Test
+    void testAddPositiveAndNegative() {
+        double result = utility.add(10.0, -4.0);
+        assertEquals(6.0, result, 1e-9);
+    }
+
+    @Test
+    void testAddWithZero() {
+        double result = utility.add(7.5, 0.0);
+        assertEquals(7.5, result, 1e-9);
+    }
+
+    @Test
     void testExponent() {
         double result = utility.exponent(2, 4);
         assertEquals(16.0, result);
