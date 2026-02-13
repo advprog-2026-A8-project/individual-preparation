@@ -40,6 +40,34 @@ class VectorUtilityTest {
     }
 
     @Test
+    void testMultiplyNormal(){
+        double[] v1 = {1.0, 2.0, 3.0};
+        double[] result = utility.multiply(v1, 2);
+        assertArrayEquals(new double[]{2.0, 4.0, 6.0}, result);
+    }
+
+    @Test
+    void testMultiplyWithSameResult(){
+        double[] v1 = {1.0, 2.0, 3.0};
+        double[] result = utility.multiply(v1, 1);
+        assertArrayEquals(result, result);
+    }
+
+    @Test
+    void testMultiplyWithNegativeValues(){
+        double[] v1 = {-1.0, 2.0, -3.0};
+        double[] result = utility.multiply(v1, 2);
+        assertArrayEquals(new double[]{-2.0, 4.0, -6.0}, result);
+    }
+
+    @Test
+    void testMultiplyWithNegativeScalar() {
+        double[] v1 = {1.0, -2.0, 3.0};
+        double[] result = utility.multiply(v1, -3);
+        assertArrayEquals(new double[]{-3.0, 6.0, -9.0}, result);
+    }
+
+    @Test
     void testNormNormalCase() {
         double[] v = {3.0, 4.0};
         double result = utility.norm(v);
