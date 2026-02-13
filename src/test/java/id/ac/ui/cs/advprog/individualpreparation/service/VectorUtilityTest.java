@@ -50,7 +50,7 @@ class VectorUtilityTest {
     void testMultiplyWithSameResult(){
         double[] v1 = {1.0, 2.0, 3.0};
         double[] result = utility.multiply(v1, 1);
-        assertArrayEquals(result, result);
+        assertArrayEquals(v1, result);
     }
 
     @Test
