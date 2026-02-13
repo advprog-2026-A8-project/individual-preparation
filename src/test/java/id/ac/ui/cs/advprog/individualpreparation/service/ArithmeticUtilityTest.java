@@ -32,6 +32,18 @@ class ArithmeticUtilityTest {
     }
 
     @Test
+    void testMultiply(){
+        double result = utility.multiply(5.0, 2.0);
+        assertEquals(10.0, result, 1e-9);
+    }
+
+    @Test
+    void testMultiplyWithNegative(){
+        double result = utility.multiply(-4.0, 3.0);
+        assertEquals(-12.0, result, 1e-9);
+    }
+
+    @Test
     void testExponent() {
         double result = utility.exponent(2, 4);
         assertEquals(16.0, result);
@@ -97,11 +109,5 @@ class ArithmeticUtilityTest {
     void testSubtractLargeNumbers() {
         double result = utility.subtract(1000000.0, 1.0);
         assertEquals(999999.0, result, 1e-9);
-    }
-
-    @Test
-    void testMultiplyDummy() {
-        double result = utility.multiply(5.0, 2.0);
-        assertEquals(0.0, result, 1e-9);
     }
 }
