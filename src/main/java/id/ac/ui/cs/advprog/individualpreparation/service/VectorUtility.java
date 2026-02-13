@@ -35,11 +35,31 @@ public class VectorUtility {
     
     public double dotProduct(double[] v1, double[] v2) {
         // TODO: Implement me properly!
-        return 0.0;
+        if (v1.length != v2.length) {
+            throw new IllegalArgumentException("Vector lengths must be equal");
+        }
+
+        double result = 0.0;
+        for (int i = 0; i < v1.length; i++) {
+            result += v1[i] * v2[i];
+        }
+        return result;
     }
-    
+
     public double norm(double[] v1) {
-        // TODO: Implement me properly!
-        return 0.0;
+        if (v1 == null) {
+            throw new IllegalArgumentException("Vector cannot be null");
+        }
+        if (v1.length == 0) {
+            throw new IllegalArgumentException("Vector cannot be empty");
+        }
+
+        double sumOfSquares = 0.0;
+        for (double value : v1) {
+            sumOfSquares = Math.fma(value, value, sumOfSquares);
+        }
+
+        return Math.sqrt(sumOfSquares);
     }
+
 }
