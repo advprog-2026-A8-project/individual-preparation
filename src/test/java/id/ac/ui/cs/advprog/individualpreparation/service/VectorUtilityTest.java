@@ -68,6 +68,22 @@ class VectorUtilityTest {
     }
 
     @Test
+    void testMultiplyNullVector() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            utility.multiply(null, 1);
+        });
+        assertEquals("Vector cannot be null", exception.getMessage());
+    }
+
+    @Test
+    void testMultiplyEmptyVector() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            utility.multiply(new double[]{}, 1);
+        });
+        assertEquals("Vector cannot be empty", exception.getMessage());
+    }
+
+    @Test
     void testNormNormalCase() {
         double[] v = {3.0, 4.0};
         double result = utility.norm(v);
